@@ -21,8 +21,7 @@ function testconvertInchesToMeters(){
       }
 }
 function convertInchesToMeters(inches){
-    return 0
-    //inches * 0.0254
+    return inches * 0.0254
 }
 
 
@@ -36,8 +35,7 @@ function testConvertInchesToCentimeter(){
 
 //kanksje konvertere dette til en  ternary operation for og gjøre det lettere og lese
 function convertInchesToMillimeter(inches){
-    return 0
-    //inches * 25.4// inch mm er 25,4 mm
+    return inches * 25.4// inch mm er 25,4 mm
     
     }
 function testConvertInchesToMillimeter() {
@@ -51,8 +49,7 @@ function testConvertInchesToMillimeter() {
   
 
   function convertInchesToCentimeters(inches) {
-    return 0;
-    // inches * 2.54;
+    return inches * 2.54;
   }
 
 

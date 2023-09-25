@@ -1,16 +1,21 @@
-
 <!DOCTYPE html>
 
-  <head>  </head>
+<head> </head>
 
-  <body>
+<body>
     <h1> Inches converter </h1>
-    <input type="number"/>
-    <button type="button">convert</button> 
+    <input type="number" placeholder="inches" />
+    <select id="selectConversion">
+        <option value="mm">mm</option>
+        <option value="cm">cm</option>
+        <option value="m">m</option>
+    </select>
 
+    <button id="convertButton" type="button">convert</button>
+    
     <script src="convert.mjs" type="module"></script>
     <script src="test.mjs" type="module"></script>
 
-  </body>
+</body>
 
 </html>

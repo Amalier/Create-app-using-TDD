@@ -22,7 +22,7 @@ export function testing() {
   testConvertInchesToMillimeter();
   testConvertInchesToCentimeter();
   testconvertInchesToMeters()
-  testIsRunningInBrowser();// hvis dokument eksisterer, alltid retunerer false
+  testIsRunningInBrowser();// dokument eksisterer ikke i terminal, tester blir ikke vellykket (alltid false)
 }
 
 function testConvertInchesToMillimeter() {

@@ -7,33 +7,36 @@ export const INCHES_TO_MILLIMETER = 2.54;
 
 
 if (isRunningInBrowser()) {
+
   const bt = document.getElementById("convertButton");
   bt.onclick = () => {
-    const result = convertValue()
+
+    const value = parseFloat(document.getElementById('inputNumber').value);
+    const unit = document.getElementById('selectConversion').value;
+    const result = convertValue(value, unit)
 
     const outputTextElement = document.getElementById("outputtext");
-    outputTextElement.innerHTML = `Result: ${result}`;
+    outputTextElement.innerHTML = `Result: ${result} ${unit}`;
 
   }
 } else {
 
-  let args = process.argv;
+  const args = process.argv;
   const shouldTest = args.some((item) => item === "-t")
-  if (shouldTest) {
-    testing();
+  if (!shouldTest) {
+    const value = parseFloat(args[2])
+    const unit = args[3]
+    const result = convertValue(value, unit)
+    console.log(`${result} ${unit}`)
   } else {
-    const result = convertValue()
-    console.log(`${result}${unit}`)
+
+    testing();
   }
 }
 
-function convertValue() {
-  let value;
-  let unit;
+function convertValue(value, unit) {
 
   if (isRunningInBrowser()) {
-    value = parseFloat(document.getElementById('inputNumber').value);
-    unit = document.getElementById('selectConversion').value;
 
   } else {
     let args = process.argv;
@@ -49,9 +52,8 @@ function convertValue() {
   } else {
 
     return convertInchesToMillimeters(value);
-
+    
   }
-
 }
 
 export function isRunningInBrowser() {
@@ -66,8 +68,6 @@ export function isRunningInBrowser() {
   return false;
 }
 
-
-//kanksje konvertere dette til en  ternary operation for og gjøre det lettere og lese
 export function convertInchesToMillimeters(inches) {
   return inches * INCHES_TO_MILLIMETER
 }

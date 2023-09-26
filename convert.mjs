@@ -2,25 +2,32 @@
 import { testing } from "./tests.mjs";
 
 export const INCHES_TO_METER = 0.0254;
-export const INCHES_TO_CENTIMETER = 25.4;
-export const INCHES_TO_MILLIMETER = 2.54;
+export const INCHES_TO_CENTIMETER = 2.54;
+export const INCHES_TO_MILLIMETER = 25.4;
 
 
 if (isRunningInBrowser()) {
 
+  const clearBtn = document.getElementById("clear");
+  clearBtn.onclick = () => {
+    const outputTextElement = document.getElementById("outputtext");
+    outputTextElement.innerHTML = ""
+  }
+
   const bt = document.getElementById("convertButton");
   bt.onclick = () => {
-
     const value = parseFloat(document.getElementById('inputNumber').value);
     const unit = document.getElementById('selectConversion').value;
-    const result = convertValue(value, unit)
+    const result = convertValue(value, unit);
 
     const outputTextElement = document.getElementById("outputtext");
-    outputTextElement.innerHTML = `Result: ${result} ${unit}`;
+    const li = document.createElement("li");
+
+    li.innerHTML = `Result: ${result} ${unit}`;
+    outputTextElement.appendChild(li);
 
   }
 } else {
-
   const args = process.argv;
   const shouldTest = args.some((item) => item === "-t")
   if (!shouldTest) {
@@ -29,20 +36,12 @@ if (isRunningInBrowser()) {
     const result = convertValue(value, unit)
     console.log(`${result} ${unit}`)
   } else {
-
     testing();
   }
 }
 
-function convertValue(value, unit) {
+export function convertValue(value, unit) {
 
-  if (isRunningInBrowser()) {
-
-  } else {
-    let args = process.argv;
-    value = parseFloat(args[2])
-    unit = args[3]
-  }
   if (unit === "-mm") {
     return convertInchesToMillimeters(value);
   } else if (unit === "-cm") {
@@ -50,9 +49,7 @@ function convertValue(value, unit) {
   } else if (unit === "-m") {
     return convertInchesToMeters(value);
   } else {
-
     return convertInchesToMillimeters(value);
-    
   }
 }
 

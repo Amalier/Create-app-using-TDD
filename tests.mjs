@@ -6,8 +6,26 @@ import {
   isRunningInBrowser,
   INCHES_TO_CENTIMETER,
   INCHES_TO_MILLIMETER,
-  INCHES_TO_METER
+  INCHES_TO_METER,
+  convertValue
 } from "./convert.mjs";
+
+function testConvertValue() {
+  if (convertValue(2, "-mm") === INCHES_TO_MILLIMETER * 2) {
+    console.log("test convertvalue -mm passed")
+  } else {
+    console.log("test convertvalue -mm failed")
+  }
+  if (convertValue(2, "-cm") === INCHES_TO_CENTIMETER * 2) {
+    console.log("test convertvalue -cm passed")
+  } else {
+    console.log("test convertvalue -cm failed")
+  } if (convertValue(2, "-m") === INCHES_TO_METER * 2) {
+    console.log("test convertvalue -m passed")
+  } else {
+    console.log("test convertvalue -m failed")
+  }
+}
 
 
 function testIsRunningInBrowser() {
@@ -21,9 +39,11 @@ function testIsRunningInBrowser() {
 export function testing() {
   testConvertInchesToMillimeter();
   testConvertInchesToCentimeter();
-  testconvertInchesToMeters()
+  testconvertInchesToMeters();
+  testConvertValue();
   testIsRunningInBrowser();// dokument eksisterer ikke i terminal, tester blir ikke vellykket (alltid false)
 }
+
 
 function testConvertInchesToMillimeter() {
 
